@@ -52,7 +52,7 @@ li {
 }
 </style>
 
-<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -62,11 +62,14 @@ li {
 		<div id="menu">
 			<h2>信息</h2>
 			<ul>
-				<li>查看信息</li>
-				<li>修改信息</li>
+				<li><a href="SelectServlet" target="content">查看信息</a></li>
 			</ul>
 		</div>
-		<div id="content">Content goes here</div>
+		<div id="content">
+			<iframe name="content" src="welcome.jsp" width=340 height=200
+				frameborder="no" border="0" marginwidth="0" marginheight="0"
+				scrolling="no" allowtransparency="yes"> </iframe>
+		</div>
 		<div id="footer">页脚</div>
 	</div>
 </body>

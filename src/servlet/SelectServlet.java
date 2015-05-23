@@ -50,16 +50,19 @@ public class SelectServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-
 		HttpSession session = request.getSession();
 		String username = session.getAttribute("name").toString();
+		//System.out.println("*******"+username);
 		User user = new User();
 		SelectInfo si = new SelectInfo();
 		try {
 			user = si.selectInfoByName(username);
-			if (user != null) {
-
+			if (user == null) {
+				request.setAttribute("user",null);
+			}else{
+				request.setAttribute("user",user);
 			}
+			request.getRequestDispatcher("userInfo.jsp").forward(request,response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

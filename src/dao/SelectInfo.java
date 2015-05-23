@@ -28,10 +28,12 @@ public class SelectInfo {
 			
 			ResultSet rs = (ResultSet)ps.executeQuery();
 			if(rs.next()){
+				user.setU_id(Integer.parseInt(rs.getString("u_id")));
 				user.setU_name(name);
 				user.setU_pwd(rs.getString("u_pwd").toString());
 				user.setU_sex(rs.getString("u_sex").toString());
 				user.setU_age(Integer.parseInt(rs.getString("u_age")));
+				user.setU_type(Integer.parseInt(rs.getString("u_type")));
 			}
 			conn.close();
 		}catch(SQLException e){

@@ -107,4 +107,14 @@
     <servlet-name>SelectAdminServlet</servlet-name>
     <url-pattern>/SelectAdminServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddUserServlet</display-name>
+    <servlet-name>AddUserServlet</servlet-name>
+    <servlet-class>servlet.AddUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddUserServlet</servlet-name>
+    <url-pattern>/AddUserServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -12,36 +12,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<form id="form1" name="form1" method="post" action="">
-			<input type="submit" name="submit" value="新增用户" />
-		</form>
-	</div>
-	<table border="1">
-		<tr>
-			<td>name</td>
-			<td>sex</td>
-			<td>age</td>
-			<td>option</td>
-		</tr>
-		<%
-			if (list != null) {
-				for (int i = 0; i < list.size(); i++) {
-					out.println("<tr><td>"
-							+ list.get(i).getU_name()
-							+ "</td><td>"
-							+ list.get(i).getU_sex()
-							+ "</td><td>"
-							+ list.get(i).getU_age()
-							+ "</td><td><a href='DeleteUserServlet?id="
-							+ list.get(i).getU_id()
-							+ "'>delete</a>&nbsp;&nbsp;<a href='SelectAdminServlet?id="
-							+ list.get(i).getU_id() + "'>update</a></td></tr>");
+	<a href="addUser.jsp">新增用户</a>
+	<div id="allUserInfo">
+		<table border="1">
+			<tr>
+				<td>name</td>
+				<td>sex</td>
+				<td>age</td>
+				<td>option</td>
+			</tr>
+			<%
+				if (list != null) {
+					for (int i = 0; i < list.size(); i++) {
+						out.println("<tr><td>"
+								+ list.get(i).getU_name()
+								+ "</td><td>"
+								+ list.get(i).getU_sex()
+								+ "</td><td>"
+								+ list.get(i).getU_age()
+								+ "</td><td><a href='DeleteUserServlet?id="
+								+ list.get(i).getU_id()
+								+ "'>delete</a>&nbsp;&nbsp;<a href='SelectAdminServlet?id="
+								+ list.get(i).getU_id() + "'>update</a></td></tr>");
+					}
+				} else {
+					out.println("no user");
 				}
-			} else {
-				out.println("no user");
-			}
-		%>
-	</table>
+			%>
+		</table>
+	</div>
 </body>
 </html>

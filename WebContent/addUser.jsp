@@ -4,13 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户注册</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<p align="center">
-		<font size="20" color="#FF3300">用户注册</font>
-	</p>
-	<form id="form1" name="form1" method="post" action="RegisterServlet">
+	<form id="form1" name="form1" method="post" action="AddUserServlet">
 		<table width="340" border="0" align="center">
 			<tr>
 				<td width="141">用户名：</td>

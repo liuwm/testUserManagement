@@ -62,6 +62,7 @@ li {
 			<ul>
 				<li><a href="SelectServlet" target="content">查看信息</a></li>
 				<li><a href="AllUserInfoServlet" target="content">用户操作</a></li>
+				<li><a href="index.jsp">注销</a></li>
 			</ul>
 		</div>
 		<div id="content">

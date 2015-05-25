@@ -63,6 +63,7 @@ li {
 			<h2>信息</h2>
 			<ul>
 				<li><a href="SelectServlet" target="content">查看信息</a></li>
+				<li><a href="index.jsp">注销</a></li>
 			</ul>
 		</div>
 		<div id="content">

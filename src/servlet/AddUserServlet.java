@@ -99,7 +99,7 @@ public class AddUserServlet extends HttpServlet {
 							e.printStackTrace();
 						}
 
-						out.println("<script>alert('添加成功');window.location='addUser.jsp';</script>");
+						out.println("<script>alert('添加成功');window.location='AllUserInfoServlet';</script>");
 						out.flush();
 						out.close();
 					}

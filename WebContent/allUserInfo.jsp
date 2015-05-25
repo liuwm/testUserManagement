@@ -16,13 +16,13 @@
 	<div id="allUserInfo">
 		<table border="1">
 			<tr>
-				<td>name</td>
-				<td>sex</td>
-				<td>age</td>
-				<td>option</td>
+				<td>姓名</td>
+				<td>性别</td>
+				<td>年龄</td>
+				<td>操作</td>
 			</tr>
 			<%
-				if (list != null) {
+				if (list.size() > 0) {
 					for (int i = 0; i < list.size(); i++) {
 						out.println("<tr><td>"
 								+ list.get(i).getU_name()
@@ -32,11 +32,11 @@
 								+ list.get(i).getU_age()
 								+ "</td><td><a href='DeleteUserServlet?id="
 								+ list.get(i).getU_id()
-								+ "'>delete</a>&nbsp;&nbsp;<a href='SelectAdminServlet?id="
-								+ list.get(i).getU_id() + "'>update</a></td></tr>");
+								+ "'>删除</a>&nbsp;&nbsp;<a href='SelectAdminServlet?id="
+								+ list.get(i).getU_id() + "'>修改</a></td></tr>");
 					}
 				} else {
-					out.println("no user");
+					out.println("<tr><td colsplan='2'>没有用户</td></tr>");
 				}
 			%>
 		</table>

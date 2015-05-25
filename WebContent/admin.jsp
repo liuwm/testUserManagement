@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,18 +55,21 @@ li {
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Main Title of Web Page</h1>
+			<h1>管理员</h1>
 		</div>
 		<div id="menu">
-			<h2>Menu</h2>
+			<h2>信息</h2>
 			<ul>
-				<li>HTML</li>
-				<li>CSS</li>
-				<li>JavaScript</li>
+				<li><a href="SelectServlet" target="content">查看信息</a></li>
+				<li><a href="AllUserInfoServlet" target="content">用户操作</a></li>
 			</ul>
 		</div>
-		<div id="content">Content goes here</div>
-		<div id="footer">Copyright W3School.com.cn</div>
+		<div id="content">
+			<iframe name="content" src="welcome.jsp" width=340 height=200
+				frameborder="no" border="0" marginwidth="0" marginheight="0"
+				scrolling="no" allowtransparency="yes"> </iframe>
+		</div>
+		<div id="footer">页脚</div>
 	</div>
 </body>
 </html>

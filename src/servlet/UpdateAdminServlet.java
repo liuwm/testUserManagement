@@ -13,18 +13,18 @@ import bean.User;
 import dao.UpdateDao;
 
 /**
- * Servlet implementation class UpdateUserServlet
+ * Servlet implementation class UpdateAdminServlet
  */
-public class UpdateUserServlet extends HttpServlet {
+public class UpdateAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public UpdateUserServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UpdateAdminServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see Servlet#destroy()
@@ -34,22 +34,18 @@ public class UpdateUserServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
@@ -67,12 +63,12 @@ public class UpdateUserServlet extends HttpServlet {
 			age = Integer.parseInt(request.getParameter("age"));
 		}
 		if (name == "" || pwd == "" || pwd1 == "") {
-			out.println("<script>alert('请输入完整信息');window.location='SelectServlet';</script>");
+			out.println("<script>alert('请输入完整信息');window.location='AllUserInfoServlet';</script>");
 			out.flush();
 			out.close();
 		} else {
 			if (!pwd.equals(pwd1)) {
-				out.println("<script>alert('两次输入密码不同，请重新输入');window.location='SelectServlet';</script>");
+				out.println("<script>alert('两次输入密码不同，请重新输入');window.location='AllUserInfoServlet';</script>");
 				out.flush();
 				out.close();
 			} else {
@@ -91,7 +87,7 @@ public class UpdateUserServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 
-				out.println("<script>alert('修改成功');window.location='SelectServlet';</script>");
+				out.println("<script>alert('修改成功');window.location='AllUserInfoServlet';</script>");
 				out.flush();
 				out.close();
 			}

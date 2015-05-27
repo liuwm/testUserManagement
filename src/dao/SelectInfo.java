@@ -13,23 +13,25 @@ public class SelectInfo {
 	private Connection conn;
 	private PreparedStatement ps;
 	String sql = "";
-	
+
 	/**
 	 * 根据name获取用户信息
+	 * 
 	 * @param name
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public User selectInfoByName(String name) throws SQLException{
+	public User selectInfoByName(String name) throws SQLException, ClassNotFoundException {
 		conn = DB.getConnection();
 		sql = "select * from users where u_name = ?";
 		User user = new User();
-		try{
+		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, name);
-			
-			ResultSet rs = (ResultSet)ps.executeQuery();
-			if(rs.next()){
+
+			ResultSet rs = (ResultSet) ps.executeQuery();
+			if (rs.next()) {
 				user.setU_id(Integer.parseInt(rs.getString("u_id")));
 				user.setU_name(name);
 				user.setU_pwd(rs.getString("u_pwd").toString());
@@ -37,35 +39,36 @@ public class SelectInfo {
 				user.setU_age(Integer.parseInt(rs.getString("u_age")));
 				user.setU_type(Integer.parseInt(rs.getString("u_type")));
 			}
-			conn.close();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			if(conn != null){
+		} catch (SQLException e) {
+			throw new SQLException();
+		} finally {
+			if (conn != null) {
 				conn.close();
 			}
-			if(ps != null){
+			if (ps != null) {
 				ps.close();
 			}
 		}
 		return user;
 	}
-	
+
 	/**
 	 * 查找所有普通用户
+	 * 
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public List<User> selectInfo() throws SQLException{
+	public List<User> selectInfo() throws SQLException, ClassNotFoundException {
 		conn = DB.getConnection();
 		sql = "select * from users where u_type = ?";
-		
+
 		List<User> list = new ArrayList<User>();
-		try{
+		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, 2);
-			ResultSet rs = (ResultSet)ps.executeQuery();
-			while(rs.next()){
+			ResultSet rs = (ResultSet) ps.executeQuery();
+			while (rs.next()) {
 				User user = new User();
 				user.setU_id(Integer.parseInt(rs.getString("u_id")));
 				user.setU_name(rs.getString("u_name"));
@@ -75,36 +78,37 @@ public class SelectInfo {
 				user.setU_type(Integer.parseInt(rs.getString("u_type")));
 				list.add(user);
 			}
-			conn.close();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			if(conn != null){
+		} catch (SQLException e) {
+			throw new SQLException();
+		} finally {
+			if (conn != null) {
 				conn.close();
 			}
-			if(ps != null){
+			if (ps != null) {
 				ps.close();
 			}
 		}
 		return list;
 	}
-	
+
 	/**
 	 * 根据id获取用户信息
+	 * 
 	 * @param id
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public User selectInfoByID(int id) throws SQLException{
+	public User selectInfoByID(int id) throws SQLException, ClassNotFoundException {
 		conn = DB.getConnection();
 		sql = "select * from users where u_id = ?";
 		User user = new User();
-		try{
+		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
-			
-			ResultSet rs = (ResultSet)ps.executeQuery();
-			if(rs.next()){
+
+			ResultSet rs = (ResultSet) ps.executeQuery();
+			if (rs.next()) {
 				user.setU_id(id);
 				user.setU_name(rs.getString("u_name").toString());
 				user.setU_pwd(rs.getString("u_pwd").toString());
@@ -112,14 +116,13 @@ public class SelectInfo {
 				user.setU_age(Integer.parseInt(rs.getString("u_age")));
 				user.setU_type(Integer.parseInt(rs.getString("u_type")));
 			}
-			conn.close();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			if(conn != null){
+		} catch (SQLException e) {
+			throw new SQLException();
+		} finally {
+			if (conn != null) {
 				conn.close();
 			}
-			if(ps != null){
+			if (ps != null) {
 				ps.close();
 			}
 		}

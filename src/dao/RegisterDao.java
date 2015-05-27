@@ -15,8 +15,9 @@ public class RegisterDao {
 	 * ÓÃ»§×¢²á
 	 * @param user
 	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void register(User user) throws SQLException{
+	public void register(User user) throws SQLException, ClassNotFoundException{
 		conn = DB.getConnection();
 		sql = "insert into users(u_name,u_pwd,u_sex,u_age,u_type) values(?,?,?,?,?)";
 		try{
@@ -28,7 +29,7 @@ public class RegisterDao {
 			ps.setInt(5, user.getU_type());
 			ps.executeUpdate();
 		}catch(SQLException e){
-			e.printStackTrace();
+			throw new SQLException();
 		}finally{
 			if(conn != null){
 				conn.close();

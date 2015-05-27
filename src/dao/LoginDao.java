@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import bean.User;
 
 public class LoginDao {
+
 	private Connection conn;
 	private PreparedStatement ps;
 	String sql = "";
@@ -17,8 +18,9 @@ public class LoginDao {
 	 * @param user
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public int login(User user) throws SQLException{
+	public int login(User user) throws SQLException, ClassNotFoundException{
 		conn = DB.getConnection();
 		int type = 0;
 		sql = "select * from users where u_name = ? and u_pwd = ?";
@@ -31,9 +33,8 @@ public class LoginDao {
 			if(rs.next()){
 				type = Integer.parseInt(rs.getString("u_type"));
 			}
-			conn.close();
 		}catch(SQLException e){
-			e.printStackTrace();
+			throw new SQLException();
 		}finally{
 			if(conn != null){
 				conn.close();
@@ -50,8 +51,9 @@ public class LoginDao {
 	 * @param name
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public boolean isExist(String name) throws SQLException{
+	public boolean isExist(String name) throws SQLException, ClassNotFoundException{
 		conn = DB.getConnection();
 		boolean bool = false;
 		sql = "select * from users where u_name = ?";
@@ -65,9 +67,8 @@ public class LoginDao {
 			}else{
 				bool = false;
 			}
-			conn.close();
 		}catch(SQLException e){
-			e.printStackTrace();
+			throw new SQLException();
 		}finally{
 			if(conn != null){
 				conn.close();

@@ -7,9 +7,12 @@ import java.sql.SQLException;
 public class DB {
 	/**
 	 * 获得连接
+	 * 
 	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public static Connection getConnection() {
+	public static Connection getConnection() throws SQLException, ClassNotFoundException {
 		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/usermanage?characterEncoding=utf-8";
 		Connection conn = null;
@@ -18,11 +21,12 @@ public class DB {
 			try {
 				conn = DriverManager.getConnection(url, "root", "root");
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new SQLException();
 			}
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			throw new ClassNotFoundException();
 		}
+
 		return conn;
 	}
 }

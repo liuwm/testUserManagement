@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.json.JSONArray;
 import dao.SelectInfo;
 import bean.User;
 
@@ -37,7 +39,7 @@ public class SelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=utf-8");
+		response.setContentType("text/json;charset=utf-8");
 		doPost(request, response);
 	}
 
@@ -49,25 +51,22 @@ public class SelectServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
+		response.setContentType("text/json;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
+		
 		HttpSession session = request.getSession();
 		String username = session.getAttribute("name").toString();
-		//System.out.println("*******"+username);
 		User user = new User();
+		PrintWriter out = response.getWriter();
 		SelectInfo si = new SelectInfo();
 		try {
 			user = si.selectInfoByName(username);
-			if (user == null) {
-				request.setAttribute("user",null);
-			}else{
-				request.setAttribute("user",user);
-			}
-			request.getRequestDispatcher("userInfo.jsp").forward(request,response);
+			JSONArray ja = JSONArray.fromObject(user);
+			out.println(ja);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			out.println("Error:数据库插入失败");
+		} catch (ClassNotFoundException e) {
+			out.println("Error:数据库连接失败");
 		}
 	}
-
 }

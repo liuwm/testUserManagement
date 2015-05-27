@@ -55,34 +55,30 @@ public class AddUserServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-
+		
 		PrintWriter out = response.getWriter();
-		String name = request.getParameter("user");
+		String name = request.getParameter("name");
 		String pwd = request.getParameter("pwd");
 		String pwd1 = request.getParameter("pwd1");
 		String sex = request.getParameter("sex");
 		int age;
-		if (request.getParameter("age") == "") {
+		if (request.getParameter("age") == null
+				|| "".equals(request.getParameter("age"))) {
 			age = 0;
 		} else {
 			age = Integer.parseInt(request.getParameter("age"));
 		}
-		if (name == "" || pwd == "" || pwd1 == "") {
-			out.println("<script>alert('请输入完整信息');window.location='addUser.jsp';</script>");
-			out.flush();
-			out.close();
+		if (name == null || "".equals(name) || pwd == null || "".equals(pwd)
+				|| pwd1 == null || "".equals(pwd1)) {
+			out.println("Error:请输入完整信息");
 		} else {
 			LoginDao ld = new LoginDao();
 			try {
 				if (ld.isExist(name)) {
-					out.println("<script>alert('该用户名已被注册，请重新输入');window.location='addUser.jsp';</script>");
-					out.flush();
-					out.close();
+					out.println("Error:该用户名已被注册，请重新输入");
 				} else {
 					if (!pwd.equals(pwd1)) {
-						out.println("<script>alert('两次输入密码不同，请重新输入');window.location='addUser.jsp';</script>");
-						out.flush();
-						out.close();
+						out.println("Error:两次输入密码不同，请重新输入");
 					} else {
 						User user = new User();
 						user.setU_name(name);
@@ -95,20 +91,16 @@ public class AddUserServlet extends HttpServlet {
 						try {
 							rd.register(user);
 						} catch (SQLException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							out.println("Error:数据库插入失败");
 						}
-
-						out.println("<script>alert('添加成功');window.location='AllUserInfoServlet';</script>");
-						out.flush();
-						out.close();
+						out.println("Success:添加成功");
 					}
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				out.println("Error:数据库插入失败");
+			} catch (ClassNotFoundException e) {
+				out.println("Error:数据库连接失败");
 			}
 		}
 	}
-
 }

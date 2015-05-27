@@ -56,25 +56,23 @@ public class UpdateUserServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		PrintWriter out = response.getWriter();
-		String name = request.getParameter("user");
+		String name = request.getParameter("name");
 		String pwd = request.getParameter("pwd");
 		String pwd1 = request.getParameter("pwd1");
 		String sex = request.getParameter("sex");
 		int age;
-		if (request.getParameter("age") == "") {
+		if (request.getParameter("age") == null
+				|| "".equals(request.getParameter("age"))) {
 			age = 0;
 		} else {
 			age = Integer.parseInt(request.getParameter("age"));
 		}
-		if (name == "" || pwd == "" || pwd1 == "") {
-			out.println("<script>alert('请输入完整信息');window.location='SelectServlet';</script>");
-			out.flush();
-			out.close();
+		if (name == null || "".equals(name) || pwd == null || "".equals(pwd)
+				|| pwd1 == null || "".equals(pwd1)) {
+			out.println("Error:请输入完整信息");
 		} else {
 			if (!pwd.equals(pwd1)) {
-				out.println("<script>alert('两次输入密码不同，请重新输入');window.location='SelectServlet';</script>");
-				out.flush();
-				out.close();
+				out.println("Error:两次密码不同，请重新输入");
 			} else {
 				User user = new User();
 				user.setU_name(name);
@@ -87,15 +85,12 @@ public class UpdateUserServlet extends HttpServlet {
 				try {
 					ud.UpdateUserInfo(user);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					out.println("Error:数据库修改失败");
+				} catch (ClassNotFoundException e) {
+					out.println("Error:数据库连接失败");
 				}
-
-				out.println("<script>alert('修改成功');window.location='SelectServlet';</script>");
-				out.flush();
-				out.close();
+				out.println("Success:修改成功");
 			}
 		}
 	}
-
 }

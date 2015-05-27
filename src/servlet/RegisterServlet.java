@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -18,93 +17,98 @@ import bean.User;
  */
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-    public void destroy(){
-    	super.destroy();
-    }
-    
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=utf-8");
-		doPost(request,response);
+	public RegisterServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void destroy() {
+		super.destroy();
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=utf-8");
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-		
-		PrintWriter out = response.getWriter();
-		//String name = new String(request.getParameter("user").getBytes("ISO8859_1"),"utf-8");
-		//String pwd = new String(request.getParameter("pwd").getBytes("ISO8859_1"),"utf-8");
-		//String pwd1 = new String(request.getParameter("pwd1").getBytes("ISO8859_1"),"utf-8");
-		//String sex = new String(request.getParameter("sex").getBytes("ISO8859_1"),"utf-8");
-		//String strage = new String(request.getParameter("age").getBytes("ISO8859_1"),"utf-8");
+
 		String name = request.getParameter("user");
 		String pwd = request.getParameter("pwd");
 		String pwd1 = request.getParameter("pwd1");
 		String sex = request.getParameter("sex");
 		int age;
-		if(request.getParameter("age") == ""){
+		if (request.getParameter("age") == null
+				|| "".equals(request.getParameter("age"))) {
 			age = 0;
-		}else{
+		} else {
 			age = Integer.parseInt(request.getParameter("age"));
 		}
-		if(name=="" || pwd=="" || pwd1==""){
-			out.println("<script>alert('请输入完整信息');window.location='register.jsp';</script>");
-			out.flush();
-			out.close();
-		}else{
+		if (name == null || "".equals(name) || pwd == null || "".equals(pwd)
+				|| pwd1 == null || "".equals(pwd1)) {
+			request.setAttribute("msg", "Error：请输入完整信息");
+			request.getRequestDispatcher("register.jsp").forward(request,
+					response);
+		} else {
 			LoginDao ld = new LoginDao();
 			try {
-				if(ld.isExist(name)){
-					out.println("<script>alert('该用户名已被注册，请重新输入');window.location='register.jsp';</script>");
-					out.flush();
-					out.close();
-				}else{
-					if(!pwd.equals(pwd1)){
-						out.println("<script>alert('两次输入密码不同，请重新输入');window.location='register.jsp';</script>");
-						out.flush();
-						out.close();
-					}else{
+				if (ld.isExist(name)) {
+					request.setAttribute("msg", "Error：该用户名已被注册，请重新输入");
+					request.getRequestDispatcher("register.jsp").forward(
+							request, response);
+				} else {
+					if (!pwd.equals(pwd1)) {
+						request.setAttribute("msg", "Error：两次输入密码不同，请重新输入");
+						request.getRequestDispatcher("register.jsp").forward(
+								request, response);
+					} else {
 						User user = new User();
 						user.setU_name(name);
 						user.setU_pwd(pwd);
 						user.setU_sex(sex);
 						user.setU_age(age);
 						user.setU_type(2);
-						
+
 						RegisterDao rd = new RegisterDao();
 						try {
 							rd.register(user);
 						} catch (SQLException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							request.setAttribute("msg", "Error：数据库插入失败");
+							request.getRequestDispatcher("register.jsp")
+									.forward(request, response);
 						}
-						
-						out.println("<script>alert('注册成功，请登录');window.location='index.jsp';</script>");
-						out.flush();
-						out.close();
+						request.setAttribute("msg", "Success：注册成功，请登录");
+						request.getRequestDispatcher("login.jsp").forward(
+								request, response);
 					}
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				request.setAttribute("error", "Error：数据库插入失败");
+				request.getRequestDispatcher("register.jsp").forward(request,
+						response);
+			} catch (ClassNotFoundException e) {
+				request.setAttribute("error", "Error：数据库连接失败");
+				request.getRequestDispatcher("register.jsp").forward(request,
+						response);
 			}
 		}
 	}

@@ -5,45 +5,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/UserOption.js"></script>
+<script type="text/javascript" src="js/AdminOption.js"></script>
 </head>
 <body>
-	<form id="form1" name="form1" method="post" action="AddUserServlet">
+	<div>
+	<div id="addMsg"></div>
 		<table width="340" border="0" align="center">
 			<tr>
-				<td width="141">用户名：</td>
-				<td width="189"><label> <input name="user" type="text"
-						id="user" />
-				</label></td>
+				<td>用户名：</td>
+				<td><input id="name" type="text" name="user" value="" />
 			</tr>
 			<tr>
 				<td>密码：</td>
-				<td><label> <input name="pwd" type="password" id="pwd" />
-				</label></td>
+				<td><input id="pwd" type="password" name="pwd" value="" />
 			</tr>
 			<tr>
-				<td>重输密码：</td>
-				<td><label> <input name="pwd1" type="password"
-						id="pwd1" />
-				</label></td>
+				<td>重复密码：</td>
+				<td><input id="pwd1" type="password" name="pwd1" value="" />
 			</tr>
 			<tr>
 				<td>性别：</td>
-				<td><label> <input name="sex" type="radio" value="男"
-						checked="checked" />男 <input type="radio" name="sex" value="女" />女
-				</label></td>
+				<td><input id="sex" type="text" name="sex" value="" />
 			</tr>
 			<tr>
 				<td>年龄：</td>
-				<td><label> <input name="age" type="text" id="age" />
-				</label></td>
+				<td><input id="age" type="text" name="age" value="" />
 			</tr>
 			<tr>
-				<td><label> <input type="submit" name="Submit"
-						value="提交" />
-				</label></td>
-				<td></td>
+				<td><input type="button" id="btn_submit" value="保存" /></td>
+				<td><input type="button" id="btn_cancle" value="取消" /></td>
 			</tr>
 		</table>
-	</form>
+	</div>
 </body>
 </html>

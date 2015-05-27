@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String msg;
+	if (session.getAttribute("Msg").toString() == null
+			|| "".equals(session.getAttribute("Msg").toString())) {
+		msg = "";
+	} else {
+		msg = session.getAttribute("Msg").toString();
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,6 +16,9 @@
 <title>用户注册</title>
 </head>
 <body>
+	<div>
+		<p><%=msg%></p>
+	</div>
 	<p align="center">
 		<font size="20" color="#FF3300">用户注册</font>
 	</p>

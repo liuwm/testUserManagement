@@ -15,8 +15,9 @@ public class UpdateDao {
 	 * 更新用户信息
 	 * @param user
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public void UpdateUserInfo(User user) throws SQLException{
+	public void UpdateUserInfo(User user) throws SQLException, ClassNotFoundException{
 		conn = DB.getConnection();
 		sql = "update users set u_pwd = ? , u_sex = ? , u_age = ? where u_name = ?";
 		try{
@@ -27,7 +28,7 @@ public class UpdateDao {
 			ps.setString(4, user.getU_name());
 			ps.executeUpdate();
 		}catch(SQLException e){
-			e.printStackTrace();
+			throw new SQLException();
 		}finally{
 			if(conn != null){
 				conn.close();

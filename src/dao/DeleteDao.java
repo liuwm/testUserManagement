@@ -13,8 +13,9 @@ public class DeleteDao {
 	 * 删除用户信息
 	 * @param id
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public void DeleteUserInfo(int id) throws SQLException{
+	public void DeleteUserInfo(int id) throws SQLException, ClassNotFoundException{
 		conn = DB.getConnection();
 		sql = "delete from users where u_id = ?";
 		try{
@@ -22,7 +23,7 @@ public class DeleteDao {
 			ps.setInt(1, id);
 			ps.executeUpdate();
 		}catch(SQLException e){
-			e.printStackTrace();
+			throw new SQLException();
 		}finally{
 			if(conn != null){
 				conn.close();

@@ -86,7 +86,7 @@ public class RegisterServlet extends HttpServlet {
 							} catch (SQLException e) {
 								out.println("Error:数据库插入失败");
 							}
-							out.println("Success:注册成功，请登录");
+							out.println("Success:注册成功");
 						} else {
 							out.println("Error:年龄有误，请输入合适的年龄");
 						}

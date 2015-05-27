@@ -7,6 +7,11 @@ function hide() {
 	document.getElementById("msg").style.display = "none";
 }
 
+function isNum(num) {
+	var reNum = /^[0-9]+$/;
+	return (reNum.test(num));
+}
+
 $(document).ready(function() {
 	/**
 	 * 注册
@@ -35,6 +40,10 @@ $(document).ready(function() {
 			setTimeout("$('#msg').hide();", 1000);
 		} else if (age == "") {
 			$("#msg").html("Error:年龄不能为空");
+			$("#msg").show();
+			setTimeout("$('#msg').hide();", 1000);
+		} else if (!isNum(age)) {
+			$("#msg").html("Error:请输入合适的年龄");
 			$("#msg").show();
 			setTimeout("$('#msg').hide();", 1000);
 		} else {

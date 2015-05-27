@@ -157,4 +157,14 @@
     <url-pattern>/admin.jsp</url-pattern>
     <url-pattern>/user.jsp</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SkipLoginServlet</display-name>
+    <servlet-name>SkipLoginServlet</servlet-name>
+    <servlet-class>servlet.SkipLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SkipLoginServlet</servlet-name>
+    <url-pattern>/SkipLoginServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

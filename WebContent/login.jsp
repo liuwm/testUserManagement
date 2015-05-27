@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%	
+<%
 	String msg;
 	if (session.getAttribute("Msg").toString() == null
 			|| "".equals(session.getAttribute("Msg").toString())) {
@@ -14,35 +14,53 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户登录</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script type="text/javascript" src="js/UserOption.js"></script>
+<script language="javascript">
+	function show() {
+		document.getElementById("msg").style.display = "block";
+		setTimeout("hide()", 1000);
+	}
+	
+	function hide(){
+		document.getElementById("msg").style.display = "none";
+	}
+</script>
 </head>
-<body>
-	<div>
+<body onload="show()">
+	<div id="msg" class="msg">
 		<p><%=msg%></p>
 	</div>
-	<div align="center">
-		<font size="20" color="#FF6633">用户登录</font>
+	<div class="login">
+		<div align="center">
+			<font size="20" color="#FF6633">用户登录</font>
+		</div>
+		<div class="form_login">
+			<form id="form_login" name="form_login" method="post"
+				action="LoginServlet">
+				<table width="357" border="0" align="center">
+					<tr>
+						<td width="128">用户名：</td>
+						<td width="219"><label> <input name="user"
+								type="text" id="user" />
+						</label></td>
+					</tr>
+					<tr>
+						<td>密 码：</td>
+						<td><label> <input name="pwd" type="password"
+								id="pwd" />
+						</label></td>
+					</tr>
+					<tr>
+						<td><label> <input type="submit" name="Submit"
+								value="登录" />
+						</label></td>
+						<td><a href="SkipServlet">注册</a></td>
+					</tr>
+				</table>
+				<p>&nbsp;</p>
+			</form>
+		</div>
 	</div>
-	<form id="form1" name="form1" method="post" action="LoginServlet">
-		<table width="357" border="0" align="center">
-			<tr>
-				<td width="128">用户名：</td>
-				<td width="219"><label> <input name="user" type="text"
-						id="user" />
-				</label></td>
-			</tr>
-			<tr>
-				<td>密 码：</td>
-				<td><label> <input name="pwd" type="password" id="pwd" />
-				</label></td>
-			</tr>
-			<tr>
-				<td><label> <input type="submit" name="Submit"
-						value="登录" />
-				</label></td>
-				<td><a href="SkipServlet">注册</a></td>
-			</tr>
-		</table>
-		<p>&nbsp;</p>
-	</form>
 </body>
 </html>

@@ -33,7 +33,8 @@ $(document).ready(function() {
 			},
 			datatype : "text",
 			success : function(data) {
-				$("#addMsg").html(data);
+				$("#msg").html(data);
+				setTimeout("$('#msg').hide();", 1000);
 			}
 		});
 	});

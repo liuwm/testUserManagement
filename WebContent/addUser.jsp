@@ -9,9 +9,10 @@
 <script type="text/javascript" src="js/AdminOption.js"></script>
 </head>
 <body>
+	<div id="msg"></div>
 	<div>
-	<div id="addMsg"></div>
-		<table width="340" border="0" align="center">
+
+		<table width="340" border="0" align="center" class="tbl">
 			<tr>
 				<td>用户名：</td>
 				<td><input id="name" type="text" name="user" value="" />

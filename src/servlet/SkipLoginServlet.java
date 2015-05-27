@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SkipServlet
+ * Servlet implementation class SkipLoginServlet
  */
-public class SkipServlet extends HttpServlet {
+public class SkipLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SkipServlet() {
+    public SkipLoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,8 +48,8 @@ public class SkipServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		HttpSession session = request.getSession();
-		session.setAttribute("Msg", "Çë×¢²á");
-		response.sendRedirect("register.jsp");
+		session.setAttribute("Msg", "ÇëµÇÂ¼");
+		response.sendRedirect("login.jsp");
 	}
 
 }

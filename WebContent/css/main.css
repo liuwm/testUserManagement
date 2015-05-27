@@ -1,44 +1,77 @@
-div#container {
-	width: 500px
-}
-
-div#header {
-	background-color: #99bbbb;
-}
-
-div#menu {
-	background-color: #ffff99;
-	height: 200px;
-	width: 150px;
-	float: left;
-}
-
-div#content {
-	background-color: #EEEEEE;
-	height: 200px;
+.msg {
+	margin-left:100px;
 	width: 350px;
+	margin: 0 auto;
+	display: none;
+	background: #fff;
+}
+
+.login {
+	border: 1px solid #000;
+	width: 350px;
+	margin: 0 auto;
+}
+
+.register {
+	border: 1px solid #000;
+	width: 350px;
+	margin: 0 auto;
+}
+
+.form_login {
+	margin-left: 20px;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+.menu a {
+	color: #ffffff;
+}
+
+a:hover {
+	color: black;
+}
+
+.menu {
+	background: #02DF82;
+}
+
+.menu ul {
+	list-style-type: none;
+	display: inline-block;
+}
+
+.menu li {
 	float: left;
 }
 
-div#footer {
-	background-color: #99bbbb;
-	clear: both;
-	text-align: center;
+.menu li+li {
+	margin-left: 20px;
 }
 
-h1 {
-	margin-bottom: 0;
+.content {
+	height: 400px;
+	border: 1px solid black;
 }
 
-h2 {
-	margin-bottom: 0;
-	font-size: 18px;
+.container {
+	width: 500px;
+	margin-left: 425px;
 }
 
-ul {
-	margin: 0;
+.tbl {
+	margin-top: 20px;
+	margin-left: 100px;
+	border:1px solid black;
 }
 
-li {
-	list-style: none;
+.tbl td {
+	margin: 5px;
+	padding: 10px 0px;
+}
+
+.addUser {
+	margin-left: 100px;
 }

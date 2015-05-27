@@ -19,9 +19,9 @@
 <script type="text/javascript" src="js/AdminOption.js"></script>
 </head>
 <body>
-	<div id="msg"></div>
+	<div id="msg" class="msg"></div>
 	<div>
-		<table>
+		<table class="tbl">
 			<tr>
 				<td>用户名：</td>
 				<td><input id="name" type="text" name="user" value="<%=name%>"

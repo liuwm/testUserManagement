@@ -55,19 +55,13 @@ public class AddUserServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-		
+
 		PrintWriter out = response.getWriter();
 		String name = request.getParameter("name");
 		String pwd = request.getParameter("pwd");
 		String pwd1 = request.getParameter("pwd1");
 		String sex = request.getParameter("sex");
 		int age;
-		if (request.getParameter("age") == null
-				|| "".equals(request.getParameter("age"))) {
-			age = 0;
-		} else {
-			age = Integer.parseInt(request.getParameter("age"));
-		}
 		if (name == null || "".equals(name) || pwd == null || "".equals(pwd)
 				|| pwd1 == null || "".equals(pwd1)) {
 			out.println("Error:请输入完整信息");
@@ -80,20 +74,25 @@ public class AddUserServlet extends HttpServlet {
 					if (!pwd.equals(pwd1)) {
 						out.println("Error:两次输入密码不同，请重新输入");
 					} else {
-						User user = new User();
-						user.setU_name(name);
-						user.setU_pwd(pwd);
-						user.setU_sex(sex);
-						user.setU_age(age);
-						user.setU_type(2);
+						if (isAge(request.getParameter("age"))) {
+							age = Integer.parseInt(request.getParameter("age"));
+							User user = new User();
+							user.setU_name(name);
+							user.setU_pwd(pwd);
+							user.setU_sex(sex);
+							user.setU_age(age);
+							user.setU_type(2);
 
-						RegisterDao rd = new RegisterDao();
-						try {
-							rd.register(user);
-						} catch (SQLException e) {
-							out.println("Error:数据库插入失败");
+							RegisterDao rd = new RegisterDao();
+							try {
+								rd.register(user);
+							} catch (SQLException e) {
+								out.println("Error:数据库插入失败");
+							}
+							out.println("Success:添加成功");
+						} else {
+							out.println("Error：年龄有误，请输入合适的年龄");
 						}
-						out.println("Success:添加成功");
 					}
 				}
 			} catch (SQLException e) {
@@ -102,5 +101,25 @@ public class AddUserServlet extends HttpServlet {
 				out.println("Error:数据库连接失败");
 			}
 		}
+	}
+
+	/**
+	 * 判断年龄是否符合规范
+	 * 
+	 * @param strAge
+	 * @return
+	 */
+	protected boolean isAge(String strAge) {
+		if (strAge == null || "".equals(strAge)) {
+			return false;
+		} else {
+			int i;
+			for (i = 0; i < strAge.length(); i++) {
+				if (!Character.isDigit(strAge.charAt(i))) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

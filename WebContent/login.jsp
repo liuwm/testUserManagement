@@ -16,16 +16,6 @@
 <title>用户登录</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="js/UserOption.js"></script>
-<script language="javascript">
-	function show() {
-		document.getElementById("msg").style.display = "block";
-		setTimeout("hide()", 1000);
-	}
-	
-	function hide(){
-		document.getElementById("msg").style.display = "none";
-	}
-</script>
 </head>
 <body onload="show()">
 	<div id="msg" class="msg">

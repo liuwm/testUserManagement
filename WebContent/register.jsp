@@ -15,20 +15,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户注册</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<script language="javascript">
-	function show() {
-		document.getElementById("msg").style.display = "block";
-		setTimeout("hide()", 1000);
-	}
-
-	function hide() {
-		document.getElementById("msg").style.display = "none";
-	}
-	
-	$(document).ready(function(){
-		
-	});
-</script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/UserOption.js"></script>
 </head>
 <body onload="show()">
 	<div id="msg" class="msg">
@@ -38,45 +26,32 @@
 		<p align="center">
 			<font size="20" color="#FF3300">用户注册</font>
 		</p>
-		<form id="form_register" name="form_register" method="post"
-			action="RegisterServlet">
-			<table width="340" border="0" align="center">
-				<tr>
-					<td width="141">用户名：</td>
-					<td width="189"><label> <input name="user" type="text"
-							id="user" />
-					</label></td>
-				</tr>
-				<tr>
-					<td>密码：</td>
-					<td><label> <input name="pwd" type="password" id="pwd" />
-					</label></td>
-				</tr>
-				<tr>
-					<td>重输密码：</td>
-					<td><label> <input name="pwd1" type="password"
-							id="pwd1" />
-					</label></td>
-				</tr>
-				<tr>
-					<td>性别：</td>
-					<td><label> <input id="sex" name="sex" type="radio" value="男"
-							checked="checked" />男 <input type="radio" name="sex" value="女" />女
-					</label></td>
-				</tr>
-				<tr>
-					<td>年龄：</td>
-					<td><label> <input id="age" name="age" type="text" id="age" />
-					</label></td>
-				</tr>
-				<tr>
-					<td><label> <input id="btn_register" type="submit" name="Submit"
-							value="提交" />
-					</label></td>
-					<td><a href="SkipLoginServlet">取消</a></td>
-				</tr>
-			</table>
-		</form>
+		<table width="340" border="0" align="center">
+			<tr>
+				<td>用户名：</td>
+				<td><input id="name" type="text" name="user" value="" />
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td><input id="pwd" type="password" name="pwd" value="" />
+			</tr>
+			<tr>
+				<td>重复密码：</td>
+				<td><input id="pwd1" type="password" name="pwd1" value="" />
+			</tr>
+			<tr>
+				<td>性别：</td>
+				<td><input id="sex" type="text" name="sex" value="" />
+			</tr>
+			<tr>
+				<td>年龄：</td>
+				<td><input id="age" type="text" name="age" value="" />
+			</tr>
+			<tr>
+				<td><input id="btn_register" type="button" value="注册" /></td>
+				<td><input id="btn_canregister" type="button" value="取消" /></td>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>

@@ -1,13 +1,13 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.LoginDao;
 import dao.RegisterDao;
@@ -53,26 +53,23 @@ public class RegisterServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 
-		String name = request.getParameter("user");
+		PrintWriter out = response.getWriter();
+		String name = request.getParameter("name");
 		String pwd = request.getParameter("pwd");
 		String pwd1 = request.getParameter("pwd1");
 		String sex = request.getParameter("sex");
-		HttpSession session = request.getSession();
 		int age;
 		if (name == null || "".equals(name) || pwd == null || "".equals(pwd)
 				|| pwd1 == null || "".equals(pwd1)) {
-			session.setAttribute("Msg", "Error：请输入完整信息");
-			response.sendRedirect("register.jsp");
+			out.println("Error:请输入完整信息");
 		} else {
 			LoginDao ld = new LoginDao();
 			try {
 				if (ld.isExist(name)) {
-					session.setAttribute("Msg", "Error：该用户名已被注册，请重新输入");
-					response.sendRedirect("register.jsp");
+					out.println("Error：该用户名已被注册，请重新输入");
 				} else {
 					if (!pwd.equals(pwd1)) {
-						session.setAttribute("Msg", "Error：两次输入密码不同，请重新输入");
-						response.sendRedirect("register.jsp");
+						out.println("Error:两次密码不同，请重新输入");
 					} else {
 						if (isAge(request.getParameter("age"))) {
 							age = Integer.parseInt(request.getParameter("age"));
@@ -87,23 +84,18 @@ public class RegisterServlet extends HttpServlet {
 							try {
 								rd.register(user);
 							} catch (SQLException e) {
-								session.setAttribute("Msg", "Error：数据库插入失败");
-								response.sendRedirect("register.jsp");
+								out.println("Error:数据库插入失败");
 							}
-							session.setAttribute("Msg", "Success：注册成功，请登录");
-							response.sendRedirect("login.jsp");
+							out.println("Success:注册成功，请登录");
 						} else {
-							session.setAttribute("Msg", "Error：年龄有误，请输入合适的年龄");
-							response.sendRedirect("register.jsp");
+							out.println("Error:年龄有误，请输入合适的年龄");
 						}
 					}
 				}
 			} catch (SQLException e) {
-				session.setAttribute("Msg", "Error：数据库插入失败");
-				response.sendRedirect("register.jsp");
+				out.println("Error:数据库插入失败");
 			} catch (ClassNotFoundException e) {
-				session.setAttribute("Msg", "Error：数据库连接失败");
-				response.sendRedirect("register.jsp");
+				out.println("Error:数据库连接失败");
 			}
 		}
 	}

@@ -1,5 +1,9 @@
+.tip {
+	display: none;
+}
+
 .msg {
-	margin-left:100px;
+	margin-left: 100px;
 	width: 350px;
 	margin: 0 auto;
 	display: none;
@@ -14,7 +18,7 @@
 
 .register {
 	border: 1px solid #000;
-	width: 350px;
+	width: 500px;
 	margin: 0 auto;
 }
 
@@ -64,7 +68,7 @@ a:hover {
 .tbl {
 	margin-top: 20px;
 	margin-left: 100px;
-	border:1px solid black;
+	border: 1px solid black;
 }
 
 .tbl td {

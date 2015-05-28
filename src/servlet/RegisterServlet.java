@@ -54,10 +54,12 @@ public class RegisterServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		PrintWriter out = response.getWriter();
+		String data = request.getParameter("data");
 		String name = request.getParameter("name");
 		String pwd = request.getParameter("pwd");
 		String pwd1 = request.getParameter("pwd1");
 		String sex = request.getParameter("sex");
+
 		int age;
 		if (name == null || "".equals(name) || pwd == null || "".equals(pwd)
 				|| pwd1 == null || "".equals(pwd1)) {
